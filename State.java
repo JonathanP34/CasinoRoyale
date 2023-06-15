@@ -2,6 +2,7 @@ import java.util.*;
 public class State {
     private Game game;
     private State prevState;
+    public Player player;
 
     //Constructor
     public State() {
@@ -28,6 +29,7 @@ public class State {
             game.getStateStack().push(temp);
         } else { //If there is only 1 state left
             prevState = null;
+            System.exit(0);
         }
     }
 
@@ -49,4 +51,6 @@ public class State {
     public void setPrevState(State newPrevState) {
         prevState = newPrevState;
     }
+
+    public Player getPlayer() {return player;}
 }
