@@ -1,10 +1,7 @@
 import java.util.*;
 public class MainMenu extends State {
-    private int userChoice;
-
     public MainMenu() {
         super();
-        userChoice = 0;
     }
 
     public void render() { //Displaying the options in the menu
@@ -18,23 +15,28 @@ public class MainMenu extends State {
 
     public void update() {
         Scanner userInput = new Scanner(System.in);
-        String val = userInput.nextLine();
         int choice;
         boolean done = false;
+        //For loop to make sure you get the proper
         while (done == false) {
             try {
+                String val = userInput.nextLine();
                 choice = Integer.parseInt(val);
 
                 if (choice > 0 && choice < 5) {
                     switch(choice) {
                         case 1:
-                            break; //Choose game state
+                            ChooseGame cg = new ChooseGame();
+                            cg.enterState();
+                            break;
                         case 2:
-                            break; //Balance State
+                            getPlayer().addBalance();
+                            break;
                         case 3:
-                            break; //Stat State
+                            //Stat State <- Saving this for later because I want to choose the stats from each game in specific, poker =/= slots
+                            break;
                         case 4:
-                            System.exit(0);
+                            exitState();
                             break;
                     }
                 } else {
@@ -46,8 +48,6 @@ public class MainMenu extends State {
                 System.out.println("Please enter valid integer value.");
             }
         }
-
     }
-
 
 }
