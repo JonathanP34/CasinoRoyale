@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class ChooseGame extends State {
-    public ChooseGame() {
-        super();
+    public ChooseGame(Game g, Player p) {
+        super(g, p);
     }
 
     public void render() {
@@ -16,28 +16,15 @@ public class ChooseGame extends State {
 
     public void update() {
         Scanner userInput = new Scanner(System.in);
-        int choice;
-        while (true) { //Goes until it breaks
+        int choice = 0;
+        boolean done = false;
+        while (done == false) { //Goes until it breaks
             try {
                 String val = userInput.nextLine();
                 choice = Integer.parseInt(val);
 
-                if (choice > 0 && choice < 3) { //5 is the number of games
-                    switch (choice) {
-                        case 1:
-                            //Play the slots
-                            break;
-                        case 2:
-                            //Play blackjack state
-                            break;
-                        case 3:
-                            //To crash
-                            break;
-                        case 4:
-                            //Returning to the menu
-                            this.exitState();
-                            break;
-                    }
+                if (choice > 0 && choice < 5) { //5 is the number of games
+                    done = true;
                 } else {
                     System.out.println("Value Error - Enter valid integer");
                 }
@@ -45,5 +32,27 @@ public class ChooseGame extends State {
                 System.out.println("Type Error - Enter integer");
             }
         }
+        //Resetting playing
+        getGame().setPlaying(false);
+        switch (choice) {
+            case 1:
+                TigerSlots ts = new TigerSlots(getGame(), getPlayer());
+                ts.enterState();
+                break;
+            case 2:
+                //Play blackjack state
+                break;
+            case 3:
+                //Play crash
+                break;
+            case 4:
+                //Returning to the menu
+                this.exitState();
+                break;
+        }
+    }
+
+    public String toString() {
+        return "ChooseGame State";
     }
 }
