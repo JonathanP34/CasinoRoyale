@@ -3,7 +3,6 @@ public class Game {
     private boolean playing;
     private boolean running;
     private Stack<State> stateStack;
-    private String userInput;
 
     //Constructor
     public Game() {
@@ -11,19 +10,37 @@ public class Game {
         playing = false;
         running = true;
         stateStack = new Stack<State>();
-        userInput = null;
         loadStates(); //Method to set the title state to the stack
     }
 
-
     //Methods of consequence
-
     public void loadStates() {
-        Title titleState = new Title();
+        Player p = new Player();
+        Title titleState = new Title(this, p);
         stateStack.push(titleState);
     }
 
+    public void gameLoop() { //The main loop of the game
+        //Renders then updates and repeat
+        while (stateStack.isEmpty() == false) {
+            stateStack.peek().render();
+            stateStack.peek().update();
+        }
+    }
 
+    public void update() {
+        stateStack.peek().update();
+    }
+
+    public void render() {
+        stateStack.peek().render();
+    }
+
+    //Running the Main Game
+    public static void main(String[] args) {
+        Game g = new Game();
+        g.gameLoop();
+    }
 
     //Setters and Getters
     public boolean getPlaying() {
