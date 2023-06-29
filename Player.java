@@ -1,48 +1,56 @@
 import java.util.*;
 public class Player {
-    private int balance;
-    private int winnings;
+    private double balance;
+    private double winnings;
 
     //Constructor
     public Player() {
-        balance = 0;
+        balance = 20;
         winnings = 0;
     }
 
     public void addBalance() {
         Scanner userInput = new Scanner(System.in);
-        int newBal = 0;
+        double newBal = 0;
         String input = "";
-        while (true) {
+        while (true) { //Keeping going while getting input
             try {
-                input = userInput.nextLine();
-                newBal = Integer.parseInt(input);
+                System.out.println("Current Balance - $" + balance);
+                System.out.print("Add Balance: ");
 
+                input = userInput.nextLine();
+                newBal = Double.parseDouble(input);
+
+                //Add to balance
                 balance += newBal;
+
+                //Display new balance
+                System.out.print("New Balance: $" + balance);
+                Thread.sleep(500);
+
                 break;
             } catch (Exception e) {
                 System.out.println("Error 4 - Invalid value");
             }
         }
-
     }
 
-    public void addWinnings(int add) {
+    public void addWinnings(double add) {
         winnings += add;
         balance += add;
     }
 
-    public void loseMoney(int loss) {
+    public void loseMoney(double loss) {
         balance -= loss;
         winnings -= loss;
     }
 
 
     //Getters and Setters
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
-    public int getWinnings() {
+    public double getWinnings() {
         return winnings;
     }
 
