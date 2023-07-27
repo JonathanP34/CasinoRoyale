@@ -40,7 +40,8 @@ public class ChooseGame extends State {
                 ts.enterState();
                 break;
             case 2:
-                //Play blackjack state
+                Blackjack bj = new Blackjack(getGame(), getPlayer());
+                bj.enterState();
                 break;
             case 3:
                 //Play crash
