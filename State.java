@@ -7,7 +7,6 @@ public class State {
     public State(Game g, Player p) {
         game = g;
         player = p;
-
     }
 
     public void update() {
@@ -33,6 +32,14 @@ public class State {
             }
         } catch (Exception e) {
             System.out.println("Error Code 1");
+        }
+    }
+
+    public void delay(int delay) {
+        try {
+            Thread.sleep(delay);
+        } catch (Exception e) {
+            System.out.println("Time Error");
         }
     }
 
