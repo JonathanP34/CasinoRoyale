@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class MainMenu extends State {
     public MainMenu(Game g, Player p) {
         super(g, p);
@@ -48,12 +49,34 @@ public class MainMenu extends State {
                 break;
             case 3:
                 //Stat State <- Saving this for later because I want to choose the stats from each game in specific, poker =/= slots
+                stats();
                 break;
             case 4:
                 exitState(); //Exiting the menu state
                 break;
         }
 
+    }
+
+    //This does not work rn problem with file reading not sure what tho
+    public void stats() {
+        //Finding the stats from Slots
+        try {
+            System.out.println("TIGER SLOTS STATS");
+            File file = new File("TigerStats.txt");
+            if (file.exists()) {
+                Scanner reader = new Scanner(file);
+                String data;
+                for (int i = 0; i < 2; i++) {
+                    data = reader.nextLine();
+                    System.out.println(data);
+                }
+                delay(1500);
+                reader.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Tiger Slots Stats Error");
+        }
     }
 
     public String toString() {
