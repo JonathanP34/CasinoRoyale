@@ -5,12 +5,11 @@ public class Title extends State{
     }
     public void update() {
         //Getting the user input, if they type anything the game begins
-        Scanner userInput = new Scanner(System.in);
-        String text = userInput.nextLine();
-        if (text.length() > 0) {
-            MainMenu menuState = new MainMenu(getGame(), getPlayer());
-            menuState.enterState(); //Entering the menuState
-        }
+        delay(1500);
+
+        MainMenu menuState = new MainMenu(getGame(), getPlayer());
+        menuState.enterState(); //Entering the menuState
+
     }
 
     public void render() {
