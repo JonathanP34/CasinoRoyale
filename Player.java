@@ -5,6 +5,7 @@ public class Player {
 
     //Constructor
     public Player() {
+        //Need to get this info from a file in the future
         balance = 20;
         winnings = 0;
     }
